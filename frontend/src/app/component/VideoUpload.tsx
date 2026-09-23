@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { API_BASE } from "@/lib/api";
 
 type VideoUploadProps = {
   onUpload?: (videoId: number) => void;
@@ -44,7 +45,7 @@ export default function VideoUpload({
       formData.append("video", selectedFile);
 
       const response = await fetch(
-        "http://localhost:8000/api/videos",
+        `${API_BASE}/videos`,
         {
           method: "POST",
           body: formData,

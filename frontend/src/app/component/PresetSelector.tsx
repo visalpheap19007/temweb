@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { API_BASE } from "@/lib/api";
 type Preset = {
   id: number;
   name: string;
@@ -38,7 +38,7 @@ export default function PresetSelector({
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:8000/api/presets"
+          `${API_BASE}/presets`
         );
 
         if (!response.ok) {
@@ -82,7 +82,7 @@ export default function PresetSelector({
   const checkRenderStatus = async (jobId: number) => {
   try {
     const response = await fetch(
-      `http://localhost:8000/api/render/status?job_id=${jobId}`
+      `${API_BASE}/render/status?job_id=${jobId}`
     );
 
     const data = await response.json();
@@ -98,7 +98,7 @@ export default function PresetSelector({
       setRenderProgress(100);
 
       setRenderedVideoUrl(
-        `http://localhost:8000/api/render/video/${jobId}`
+        `${API_BASE}/render/video/${jobId}`
       );
 
     } else if (data.status === "failed") {
@@ -219,7 +219,7 @@ export default function PresetSelector({
       console.log("Starting render...");
 
       const response = await fetch(
-        "http://localhost:8000/api/render",
+        "${API_BASE}/render",
         {
           method: "POST",
           headers: {

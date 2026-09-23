@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { API_BASE } from "@/lib/api";
 
 interface Template {
   id: number;
@@ -26,7 +27,7 @@ export default function TemplateRenderHistory() {
   const loadJobs = useCallback(async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/template-render/jobs",
+        `${API_BASE}/template-render/jobs`,
         {
           headers: {
             Accept: "application/json",
@@ -178,7 +179,7 @@ export default function TemplateRenderHistory() {
                   <video
                     key={job.id}
                     
-                    src={`http://localhost:8000/api/template-render/jobs/${job.id}/video`}
+                    src={`${API_BASE}/template-render/jobs/${job.id}/video`}
                     controls
                     playsInline
                     preload="metadata"
@@ -186,7 +187,7 @@ export default function TemplateRenderHistory() {
                   />
 
                   <a
-                    href={`http://localhost:8000/api/template-render/jobs/${job.id}/video`}
+                    href={`${API_BASE}/template-render/jobs/${job.id}/video`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"

@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { API_BASE } from "@/lib/api";
 
-const API_BASE = "http://localhost:8000/api";
 
 interface TemplateSlot {
   id: number;

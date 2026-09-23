@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE } from "@/lib/api";
 
 type Video = {
   id: number;
@@ -40,7 +41,7 @@ const [deletingJobId, setDeletingJobId] = useState<number | null>(null);
       setDeletingJobId(jobId);
 
       const response = await fetch(
-        `http://localhost:8000/api/render-jobs/${jobId}`,
+        `${API_BASE}/render-jobs/${jobId}`,
         {
           method: "DELETE",
         }
@@ -75,7 +76,7 @@ const [deletingJobId, setDeletingJobId] = useState<number | null>(null);
     const fetchJobs = async () => {
         try {
         const response = await fetch(
-            "http://localhost:8000/api/render-jobs"
+            `${API_BASE}/render-jobs`
         );
 
         const data = await response.json();
@@ -241,13 +242,13 @@ const [deletingJobId, setDeletingJobId] = useState<number | null>(null);
               {isCompleted && (
                 <div className="mt-5 space-y-3">
                   <video
-                    src={`http://localhost:8000/api/render/video/${job.id}`}
+                    src={`${API_BASE}/render/video/${job.id}`}
                     controls
                     className="w-full max-w-2xl rounded-lg"
                   />
 
                   <a
-                    href={`http://localhost:8000/api/render/download/${job.id}`}
+                    href={`${API_BASE}/render/download/${job.id}`}
                     className="inline-block rounded-lg bg-black px-5 py-2 text-white hover:opacity-80"
                   >
                     Download Video

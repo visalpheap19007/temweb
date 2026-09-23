@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { API_BASE } from "@/lib/api";
 
 interface TemplateSlot {
   id: number;
@@ -139,7 +140,7 @@ export default function TemplateSelector() {
     const loadTemplates = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/templates"
+          `${API_BASE}/templates`
         );
 
         if (!response.ok) {
@@ -255,7 +256,7 @@ export default function TemplateSelector() {
       formData.append("video", file);
 
       const response = await fetch(
-        "http://localhost:8000/api/videos",
+        `${API_BASE}/videos`,
         {
           method: "POST",
           body: formData,
@@ -611,7 +612,7 @@ export default function TemplateSelector() {
   const pollTemplateJob = async (id: number) => {
   try {
     const response = await fetch(
-      `http://localhost:8000/api/template-render/jobs/${id}`,
+      `${API_BASE}/template-render/jobs/${id}`,
       {
         headers: {
           Accept: "application/json",
@@ -685,7 +686,7 @@ export default function TemplateSelector() {
     setJobError(null);
 
     const response = await fetch(
-      "http://localhost:8000/api/template-render",
+      `${API_BASE}/template-render`,
       {
         method: "POST",
         headers: {
@@ -1629,14 +1630,14 @@ export default function TemplateSelector() {
                     </p>
 
                     <video
-                      src={`http://localhost:8000/api/template-render/jobs/${jobId}/video`}
+                      src={`${API_BASE}/template-render/jobs/${jobId}/video`}
                       controls
                       playsInline
                       className="w-full max-w-2xl rounded-xl bg-black"
                     />
 
                     <a
-                      href={`http://localhost:8000/api/template-render/jobs/${jobId}/video`}
+                      href={`${API_BASE}/template-render/jobs/${jobId}/video`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
