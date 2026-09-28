@@ -422,8 +422,14 @@ class TemplateRenderController extends Controller
             ], 404);
         }
 
-        // The AE worker stores the rendered MP4 here.
-        $videoPath = 'C:\\Users\\visal\\OneDrive\\Documents\\ae-worker\\template-jobs'
+        $workerPath = env(
+            'AE_WORKER_PATH',
+            'C:\\Users\\visal\\OneDrive\\Documents\\ae-worker'
+        );
+
+        $videoPath = $workerPath
+            . DIRECTORY_SEPARATOR
+            . 'template-jobs'
             . DIRECTORY_SEPARATOR
             . 'job_' . $job->id
             . DIRECTORY_SEPARATOR

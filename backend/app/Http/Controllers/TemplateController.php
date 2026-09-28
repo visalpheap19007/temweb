@@ -181,8 +181,10 @@ class TemplateController extends Controller
 
         $jobId = (string) Str::uuid();
 
-        $aeWorkerPath =
-            'C:\\Users\\visal\\OneDrive\\Documents\\ae-worker';
+        $aeWorkerPath = env(
+            'AE_WORKER_PATH',
+            'C:\\Users\\visal\\OneDrive\\Documents\\ae-worker'
+        );
 
         $jobDirectory =
             $aeWorkerPath .

@@ -53,8 +53,10 @@ class RenderController extends Controller
     // WORKER FOLDER
     // ==========================================
 
-    $workerPath =
-        'C:/Users/visal/OneDrive/Documents/ae-worker';
+$workerPath = env(
+    'AE_WORKER_PATH',
+    'C:/Users/visal/OneDrive/Documents/ae-worker'
+);
 
 
     // ==========================================

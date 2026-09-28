@@ -219,7 +219,7 @@ export default function PresetSelector({
       console.log("Starting render...");
 
       const response = await fetch(
-        "${API_BASE}/render",
+        `${API_BASE}/render`,
         {
           method: "POST",
           headers: {
